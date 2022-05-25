@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    function myrefresh() {
+        window.location.reload();
+    }
+    setTimeout('myrefresh()', 5000);
+    </script>
+    <style>
+    .equation{
+    text-align: center;
+    font-size: 72px;
+    }
+
+    .answer_box{
+    text-align: center;
+    }
+
+    .points{
+    float: right;
+    text-align: right;
+    padding: 50px;
+    }
+
+    .rounds{
+    float: left;
+    text-align: left;
+    padding: 50px;
+    display: inline-block;
+    }
+
+    </style>
+</head>
+<body>
+
+<div class="row">
+<h2 class="rounds">Rounds: {{ math.rounds }} </h2>
+<h2 class="points">Points: {{ math.points }}</h2>
+    </div>
+
+<h1 class="equation">
+{{math.x}} X {{math.y}}
+</h1>
+
+<form method="POST" action="{% url 'operation' %}" class="answer_box">
+    {% csrf_token %}
+    <input type="number" name="answer">
+    <input type="submit" value="submit">
+</form>
+
+</body>
+</html>
